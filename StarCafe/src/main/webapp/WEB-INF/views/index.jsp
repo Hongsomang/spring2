@@ -14,7 +14,8 @@
 			<div>
 				<ul>
 					<li><a href="product/list">제품관리</a></li>
-					
+					<li><a href="/resources/view/html/product.html">제품관리 (ajax)</a></li>
+				
 				</ul>
 			</div>
 		</div>

@@ -32,7 +32,7 @@
  </select>
  
  <insert id="add">
- 	insert into product (name,price,category) values (#{name},#{price},#{category})
+ 	insert into product (name,price,category,status) values (#{name},#{price},#{category},#{status})
  </insert>
  <select id="item" resultType="Product">
  select * from product where id=#{id}

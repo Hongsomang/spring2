@@ -1,5 +1,0 @@
-package kr.ac.kopo.starcafe.Dao;
-
-public interface ProductDao {
-
-}
