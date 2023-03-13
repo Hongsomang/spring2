@@ -1,0 +1,39 @@
+package kr.ac.kopo.starcafe.Service;
+
+import java.util.List;
+
+import kr.ac.kopo.starcafe.Model.Product;
+
+public class ProductServiceImpl implements ProductService {
+
+	@Override
+	public List<Product> list() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void add(Product item) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Product item(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void update(Product item) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

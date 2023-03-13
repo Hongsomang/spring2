@@ -1,0 +1,5 @@
+INDEX VERSION 1.131
+D:\hongsomang\spring\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1493101488.index
+\StarCafe\src\main\java
+D:\hongsomang\spring\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\700543436.index
+\StarCafe\src\main\java

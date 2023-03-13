@@ -1,0 +1,19 @@
+package kr.ac.kopo.starcafe.Service;
+
+import java.util.List;
+
+import kr.ac.kopo.starcafe.Model.Product;
+
+public interface ProductService {
+
+	List<Product> list();
+
+	void add(Product item);
+
+	Product item(int id);
+
+	void update(Product item);
+
+	void delete(int id);
+
+}
