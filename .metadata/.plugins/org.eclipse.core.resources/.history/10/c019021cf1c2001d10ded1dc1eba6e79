@@ -1,0 +1,13 @@
+/**
+ * 
+ */
+window.onload = ()=>{
+    //fetch 를 실행하겠습니다.
+    //이주소로 패치를 해라 정상정으로 실행되면 콘솔에 입력이 되어라
+    //fetch 는 promise이다.
+    fetch("/api/product")
+    .then(resp => resp.json())
+    .then(result => console.log(result));
+
+    console.log("완료");
+}

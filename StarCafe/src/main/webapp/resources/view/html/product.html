@@ -8,6 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script type="text/javascript" src="/resources/js/pager.js"></script>
+  <link href="/resources/css/pager.css" rel="stylesheet" type="text/css">
   <!-- ${pageContext.request.contextPath} -->
 </head>
 <body>
@@ -75,22 +76,14 @@
 					</tr>
 				</thead>
 
-				<tbody class="table-group-divider">
+				<tbody id="list" class="table-group-divider">
 				
-						<tr >
+						<tr id="empty_list" >
 							<td colspan="6">등록 된 제품이 없습니다.</td>
 						</tr>
 					
 					
-						<tr >
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td><a class="btn btn-warning" href="update/">변경</a><a
-								class="btn btn-danger" href="delete/">삭제</a></td>
-						</tr>
+						
 					
 				</tbody>
 				<tfoot>
@@ -98,19 +91,19 @@
 						<td colspan="6">
 							<ol style="margin: 0"
 								class="pagination pagination-sm justify-content-center">
-								<li class="page-item"><a class="page-link" href="?page=1">
-										처음</a></li>
-								<li class="page-item"><a class="page-link"
-									href="?page="> 이전</a></li>
+								<li class="page-item page-first"><div class="page-link" >
+										처음</div></li>
+								<li class="page-item page-prev"><div class="page-link"
+								> 이전</div></li>
 								
-									<li class="page-item"><a
-										class="page-link" href="?page="></a></li>
+									<li class="page-item "><div
+										class="page-link" >1</div></li>
 					
 
-								<li class="page-item"><a class="page-link"
-									href="?page="> 다음</a></li>
-								<li class="page-item"><a class="page-link"
-									href="?page="> 마지막</a></li>
+								<li class="page-item page-next"><div class="page-link"
+									> 다음</div></li>
+								<li class="page-item page-last"><div class="page-link"
+							> 마지막</div></li>
 							</ol>
 						</td>
 					</tr>
