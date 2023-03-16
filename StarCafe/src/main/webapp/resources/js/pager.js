@@ -3,24 +3,77 @@
  */
 let pager;
 
-window.onload = ()=>{
+window.addEventListener("load",()=>{
     getPage(1);
+
+    document.getElementById("search").addEventListener("click",e =>{
+        const search =document.querySelector("select[name=search]").value;
+        const keyword=document.querySelector("input[name=keyword]").value;
+        const minPrice=document.querySelector("input[name=minPrice]").value;
+        const maxPrice=document.querySelector("input[name=maxPrice]").value;
+        const category=document.querySelector("select[name=category]").value;
+        const status=document.querySelector("select[name=status]").value;
+
+        if(search ==1 || search ==2){
+            getPage(1,{search,keyword});
+        }
+        else if(search ==3){
+            getPage(1,{search,minPrice,maxPrice})
+        }
+        else if(search ==4){
+            getPage(1,{search,category});
+        }
+        else if(search ==5){
+            getPage(1,{search,status});
+        }
+    });
    
-};
-function getPage(page){
+});
+
+function getPage(page,query){
+    let url=`/api/product?page=${page}`;
+    if(query)
+       url += "&"+new URLSearchParams(query).toString();
+
+    console.log(url);
+
     //fetch 를 실행하겠습니다.
     //이주소로 패치를 해라 정상정으로 실행되면 콘솔에 입력이 되어라
     //fetch 는 promise이다.
-    fetch(`/api/product?page=${page}`)
+    fetch(url)
     .then(resp => resp.json())
     .then(result =>{ 
     	//onClickListener 는 새로 생경나는거라서 
-        document.querySelector(".pagination .page-next").onclick = e =>  getPage(result.pager.next);
-        document.querySelector(".pagination .page-prev").onclick = e =>  getPage(result.pager.prev);
-        document.querySelector(".pagination .page-last").onclick = e =>  getPage(result.pager.last);
+        document.querySelector(".pagination .page-next").onclick = e =>  getPage(result.pager.next,query);
+        document.querySelector(".pagination .page-prev").onclick = e =>  getPage(result.pager.prev,query);
+        document.querySelector(".pagination .page-last").onclick = e =>  getPage(result.pager.last,query);
         document.querySelector(".pagination .page-first").onclick = e =>  getPage(1);
         
-        console.log(result.pager.page);
+        const pagination=document.querySelector(".pagination .page-next");
+
+        document.querySelectorAll(".pagination .page-list").forEach(element => element.remove());
+
+        result.pager.list.forEach(element =>{
+            console.log(element);
+
+            const li =document.createElement("li");
+            li.classList.add("page-item","page-list");
+
+            const link=document.createElement("div");
+            link.classList.add("page-link");
+            link.textContent=element;
+            
+            if(element ==result.pager.page){
+                link.classList.add("active");
+            }
+
+            link.addEventListener("click",e => getPage(element,query));
+
+            li.append(link);
+            pagination.before(li);
+        });
+
+        console.log("page=",result.pager.page);
         const tbody=document.querySelector("#list");
 
         tbody.querySelectorAll(".item").forEach(element =>{

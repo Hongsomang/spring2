@@ -12,7 +12,6 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/pager.js"></script>
-<script type="text/javascript" src="/resources/js/search.js"></script>
 <link href="/resources/css/pager.css" rel="stylesheet" type="text/css">
 <!-- ${pageContext.request.contextPath} -->
 </head>
@@ -52,7 +51,7 @@
 				</div>
 
 				<div class="col-1 ">
-					<select name="category"
+					<select name="kategory"
 						class=" form-select-sm form-select keyword-all keyword-4">
 						<option value="1">음료</option>
 						<option value="2">푸드</option>
@@ -66,12 +65,14 @@
 						class=" form-select-sm form-select keyword-all keyword-5">
 						<option value="0">판매중지</option>
 						<option value="1">판매중</option>
+
 					</select>
 				</div>
 				<div class="col-1">
 					<button id="search" class="btn btn-sm btn-primary">검색</button>
 				</div>
 			</div>
+
 		</div>
 		<div>
 			<table border="1" class="table">
@@ -85,11 +86,16 @@
 						<th scope="col">관리</th>
 					</tr>
 				</thead>
+
 				<tbody id="list" class="table-group-divider">
 
 					<tr id="empty_list">
 						<td colspan="6">등록 된 제품이 없습니다.</td>
 					</tr>
+
+
+
+
 				</tbody>
 				<tfoot>
 					<tr>
@@ -113,6 +119,10 @@
 					</tr>
 				</tfoot>
 			</table>
+		</div>
+		<div>
+			<a class="btn btn-success" href="dummy">대량등록</a> <a
+				class="btn btn-success" href="init">전체 삭제</a>
 		</div>
 		<div>
 			<a class="btn btn-primary" href="add">추가</a> <a class="btn btn-light"

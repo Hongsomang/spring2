@@ -66,12 +66,14 @@
 						class=" form-select-sm form-select keyword-all keyword-5">
 						<option value="0">판매중지</option>
 						<option value="1">판매중</option>
+
 					</select>
 				</div>
 				<div class="col-1">
 					<button id="search" class="btn btn-sm btn-primary">검색</button>
 				</div>
 			</div>
+
 		</div>
 		<div>
 			<table border="1" class="table">
@@ -85,11 +87,16 @@
 						<th scope="col">관리</th>
 					</tr>
 				</thead>
+
 				<tbody id="list" class="table-group-divider">
 
 					<tr id="empty_list">
 						<td colspan="6">등록 된 제품이 없습니다.</td>
 					</tr>
+
+
+
+
 				</tbody>
 				<tfoot>
 					<tr>

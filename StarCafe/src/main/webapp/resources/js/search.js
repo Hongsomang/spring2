@@ -2,23 +2,29 @@
  * 
  */
  
- $(document).ready(function(){
-			/*document.querySelector("select[name='search']").addEventListener("change",e=>{
-				document.querySelectAll(".keyword-all").forEach(item =>{
+window.addEventListener("load",()=>{
+
+	document.querySelectorAll(".keyword-all").forEach(item =>{
+		item.disabled=true;});
+
+			document.querySelector("select[name='search']").addEventListener("change",e=>{
+				
+				document.querySelectorAll(".keyword-all").forEach(item =>{
 					item.disabled=true;});
 
-				const item=e.target[e.target.selectedIndex];
-				alter(item.textcontent);
-
-				document.querySelectAll(".keyword-all").forEach(item =>{
-					item.disabled=true;});
-					
-				document.querySelectAll(".keyword-"+value).forEach(item =>{
-					item.disabled=true;});
-				})
-			});*/
+				const item=e.target.value;
 			
-			$('select[name=search]').change(function(){				
+
+					
+				document.querySelectorAll(`.keyword-${e.target.value}`).forEach(item =>{
+					item.disabled=false;});
+
+				console.log("item",item);
+				});
+				
+				
+			
+			/*$('select[name=search]').change(function(){				
 				const search=$(this).val();
 				console.dir($(this));
 				console.log(search);
@@ -41,5 +47,5 @@
 					$('.keyword-all').attr("disabled",false);
 				
 				}
-			});
+			});*/
 		});
