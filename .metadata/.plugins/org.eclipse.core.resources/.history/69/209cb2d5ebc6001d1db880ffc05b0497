@@ -1,0 +1,40 @@
+package kr.ac.kopo.starcafe.Dao;
+
+import java.util.List;
+
+import kr.ac.kopo.starcafe.Model.Customer;
+import kr.ac.kopo.starcafe.Pager.Pager;
+
+public class CustomerDaoImpl implements CustomerDao {
+
+	@Override
+	public List<Customer> list(Pager pager) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void add(Customer item) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Customer item(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void update(Customer item) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

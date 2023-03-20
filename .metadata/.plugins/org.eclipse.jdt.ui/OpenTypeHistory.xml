@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
     <typeInfo handle="=StarCafe/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;kr.ac.kopo.starcafe.Service{ProductService.java[ProductService" modifiers="513" timestamp="1678256014254"/>
+    <typeInfo handle="=StarCafe/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;kr.ac.kopo.starcafe.Service{CustomerService.java[CustomerService" modifiers="513" timestamp="1679294315605"/>
+    <typeInfo handle="=StarCafe/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;kr.ac.kopo.starcafe.Dao{CustomerDao.java[CustomerDao" modifiers="513" timestamp="1679294961086"/>
 </typeInfoHistroy>

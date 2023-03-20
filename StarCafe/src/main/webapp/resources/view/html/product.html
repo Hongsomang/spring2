@@ -115,9 +115,99 @@
 			</table>
 		</div>
 		<div>
-			<a class="btn btn-primary" href="add">추가</a> <a class="btn btn-light"
+			<button class="btn btn-primary" href="add" id="add" >추가</button> <a class="btn btn-light"
 				href="../">이전</a>
 		</div>
 	</div>
+	<div id="addModal" class="modal" tabindex="-1" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">제품 등록</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <div>
+			<div class="mb-3" >
+				<label>제품명</label>
+				<input class="form-control"  type="text" name="name">
+			</div>
+			<div class="mb-3">
+				<label>가격:</label>
+				<input class="form-control" type="number" name="price">
+			</div>
+			<div class="mb-3">
+				<label>구분</label>
+				<select class="form-control" name="category">
+					<option value="1">음료</option>
+					<option value="2">푸드</option>
+					<option value="3">상품</option>
+					<option value="4">카드</option>
+				</select>
+				
+			</div>
+			<div class="mb-3">
+				<label>판매여부</label>
+				<select class="form-control" name="status">
+					<option value="0">판매중지</option>
+					<option value="1">판매중</option>
+				</select>
+			</div>
+	</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary submit"  data-bs-dismiss="modal">등록</button>
+        <button  class="btn btn-light "  data-bs-dismiss="modal" aria-label="Close">취소</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="updateModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">제품 변경</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <div>
+       		<div class="mb-3" >
+				<label>제품 번호</label>
+				<input class="form-control"  type="number" name="id" readonly>
+			</div>
+			<div class="mb-3" >
+				<label>제품명</label>
+				<input class="form-control"  type="text" name="name">
+			</div>
+			<div class="mb-3">
+				<label>가격:</label>
+				<input class="form-control" type="number" name="price">
+			</div>
+			<div class="mb-3">
+				<label>구분</label>
+				<select class="form-control" name="category">
+					<option value="1">음료</option>
+					<option value="2">푸드</option>
+					<option value="3">상품</option>
+					<option value="4">카드</option>
+				</select>
+				
+			</div>
+			<div class="mb-3">
+				<label>판매여부</label>
+				<select class="form-control" name="status">
+					<option value="0">판매중지</option>
+					<option value="1">판매중</option>
+				</select>
+			</div>
+	</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary submit" data-bs-dismiss="modal">변경</button>
+        <button class="btn btn-light "  data-bs-dismiss="modal" aria-label="Close">취소</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

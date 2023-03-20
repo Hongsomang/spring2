@@ -1,0 +1,16 @@
+package kr.ac.kopo.starcafe.Service;
+
+import java.util.List;
+
+import kr.ac.kopo.starcafe.Model.Customer;
+import kr.ac.kopo.starcafe.Pager.Pager;
+
+public class CustomerServiceImpl implements CustomerService {
+
+	@Override
+	public List<Customer> list(Pager pager) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -4,8 +4,89 @@
 let pager;
 
 window.addEventListener("load",()=>{
-    getPage(1);
+  
 
+  
+
+    document.getElementById("add").addEventListener("click", e =>{
+        const modal =new bootstrap.Modal(document.getElementById("addModal"));
+
+        modal.toggle();
+    });
+
+
+    document.querySelector("#addModal .submit").addEventListener("click",e =>{
+        const name=document.querySelector("#addModal input[name='name']").value;
+        const price=document.querySelector("#addModal input[name='price']").value;
+        const category=document.querySelector("#addModal select[name='category']").value;
+        const status=document.querySelector("#addModal select[name='status']").value;
+
+        const item={name, price, category, status};
+        console.log(item);
+
+        fetch("/api/product",{
+            method: "POST",
+            headers:{'content-type':'application/json'},
+            body: JSON.stringify(item)
+        })
+        .then(resp => {
+            if(resp.status==200)
+                return resp.json()   
+        })
+        .then(result =>{
+            console.log(result);  
+           const tbody=document.querySelector("#empty_list");
+           const item= makeItem(result);
+           console.log(tbody);
+           console.log(item);
+
+           tbody.after(item);   
+           
+        });
+
+        alert("등록");
+
+    });
+
+ 
+
+    document.querySelector("#updateModal .submit").addEventListener("click",e =>{
+        const modal=document.querySelector("#updateModal");
+        const id=modal.querySelector("input[name='id']").value;
+        const name=modal.querySelector("input[name='name']").value;
+        const price=modal.querySelector("input[name='price']").value;
+        const category=modal.querySelector("select[name='category']").value;
+        const status=modal.querySelector("select[name='status']").value;
+
+        const item={id,name,price,category,status};
+
+        fetch("/api/product",{
+            method:"PUT",
+            headers:{'content-type':'application/json'},
+            body: JSON.stringify(item)
+        }).then(resp =>{
+            if(resp.status==200){
+               
+                return resp.json();
+            }
+        }).then(result =>{
+            console.log(result);
+            const tr=document.querySelector(`#list tr[data-id='${result.id}']`);
+            tr.querySelector(".name").textContent=result.name;
+            tr.querySelector(".price").textContent=result.price+"원";
+            tr.querySelector(".category").dataset.value=result.category;
+            tr.querySelector(".category").textContent=result.category_;
+            tr.querySelector(".status").dataset.value=result.status;
+            tr.querySelector(".status").textContent=result.status_;
+
+        });
+
+
+        alert("변경");
+        
+    });
+
+    getPage(1);
     document.getElementById("search").addEventListener("click",e =>{
         const search =document.querySelector("select[name=search]").value;
         const keyword=document.querySelector("input[name=keyword]").value;
@@ -93,28 +174,45 @@ function getPage(page,query){
 
         result.list.forEach(element => {
             console.log(element);
-            const tr=document.createElement("tr");
+            const item=makeItem(element);  
+            tbody.append(item);
+        });
+        
+    });
+
+    console.log("완료");
+}
+function makeItem(element){
+    const tr=document.createElement("tr");
             tr.classList.add("item");
-            
+            tr.dataset.id=element.id;
+
             const id=document.createElement("td");
             id.textContent=element.id;
+            id.classList.add("id");
             tr.append(id);
 
             const name=document.createElement("td");
             name.textContent=element.name;
+            name.classList.add("name");
             tr.append(name);
             
 
             const price=document.createElement("td");
             price.textContent=element.price+"원";
+            price.classList.add("price");
             tr.append(price);
 
             const category=document.createElement("td");
             category.textContent=element.category_;
+            category.dataset.value=element.category;
+            category.classList.add("category");
             tr.append(category);
 
             const status=document.createElement("td");
             status.textContent=element.status_;
+            status.dataset.value=element.status;
+            status.classList.add("status");
             tr.append(status);
 
             const manage=document.createElement("td");
@@ -122,18 +220,43 @@ function getPage(page,query){
             const delete_btn=document.createElement("a");
             delete_btn.text="삭제";
             delete_btn.classList.add("btn","btn-danger");
+            delete_btn.addEventListener("click", e =>{
+                const id=e.target.parentNode.parentNode.dataset.id;
+                console.log(id);
+                fetch(`/api/product/${id}`,{
+                    method:"DELETE"
+                }).then(resp =>{
+                    if(resp.status ==200){
+                        document.querySelector(`#list tr[data-id='${id}']`).remove();
+                    }
+                }).then(result =>{
+                    
+                });
+                alert("삭제");
+            })
             manage.append(delete_btn);
             const update_btn=document.createElement("a");
             update_btn.text="변경";
-            update_btn.classList.add("btn","btn-warning");
+            update_btn.classList.add("btn","btn-warning","update");
+            update_btn.addEventListener("click", e =>{
+                const id=e.target.closest('tr');
+                
+                
+                document.querySelector("#updateModal input[name= 'id']").value=tr.querySelector('.id').textContent;
+                document.querySelector("#updateModal input[name= 'name']").value=tr.querySelector('.name').textContent;
+                document.querySelector("#updateModal input[name= 'price']").value=parseInt( tr.querySelector('.price').textContent);
+                const category=tr.querySelector('.category').dataset.value;
+                document.querySelector(`#updateModal select[name='category'] option[value='${category}']`).selected=true;
+                const status=tr.querySelector('.status').dataset.value;
+                document.querySelector(`#updateModal select[name='status'] option[value= '${status}']`).selected=true;
+
+                const modal =new bootstrap.Modal(document.getElementById("updateModal"));
+                modal.toggle();
+            });
             manage.append(update_btn);
             tr.append(manage);
            
 
-            tbody.append(tr);
-        });
-        
-    });
-
-    console.log("완료");
+            
+            return tr;
 }
