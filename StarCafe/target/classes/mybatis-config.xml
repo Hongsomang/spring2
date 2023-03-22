@@ -6,8 +6,10 @@
 </settings>
 <typeAliases>
 	<typeAlias type="kr.ac.kopo.starcafe.Model.Product" alias="Product"/>
+	<typeAlias type="kr.ac.kopo.starcafe.Model.Customer" alias="Customer"/>
 </typeAliases>
 <mappers  >
 	<mapper resource="mybatis/product.xml"/>
+		<mapper resource="mybatis/customer.xml"/>
 </mappers>
 </configuration>

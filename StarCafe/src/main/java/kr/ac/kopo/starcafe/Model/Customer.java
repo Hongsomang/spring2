@@ -4,7 +4,7 @@ public class Customer {
 
 	private int id;
 	private String name;
-	private String ph;
+	private String tel;
 	private int point;
 	public int getId() {
 		return id;
@@ -18,11 +18,12 @@ public class Customer {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getPh() {
-		return ph;
+
+	public String getTel() {
+		return tel;
 	}
-	public void setPh(String ph) {
-		this.ph = ph;
+	public void setTel(String tel) {
+		this.tel = tel;
 	}
 	public int getPoint() {
 		return point;

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="customer">
+	<sql id="search">
+ 	select * from customer 
+ 	<where>
+ 		<if test="search eq 1">
+ 			id=#{keyword}
+ 		</if>
+ 		<if test="search eq 2">
+ 			name like CONCAT('%', CONCAT(#{keyword},'%'))
+ 		</if>
+ 		<if test="search eq 3">
+ 			tel like CONCAT('%', CONCAT(#{keyword},'%'))
+ 		</if>
+ 		<if test="search eq 4">
+ 			point=#{keyword}
+ 		</if>
+ 	
+ 	</where>
+ </sql>
+ <select id="list" resultType="Customer">
+ 	select * from ( <include refid="search"></include>) t1
+ 	order by id desc
+ 	LIMIT #{offset},#{perPage} 
+ 	
+ 	
+ </select>
+ <select id="total" resultType="Integer">
+ 	select count(*) from ( <include refid="search"></include>) t1
+ </select>
+ 
+ <insert id="add">
+ 	<selectKey  keyProperty="id" resultType="Integer" order="AFTER">
+ 		select last_insert_ID()
+ 	</selectKey>
+ 	insert into customer (name,tel) values (#{name},#{tel})
+ </insert>
+ <select id="item" resultType="Customer">
+ select * from customer where id=#{id}
+ </select>
+ <update id="update">
+ 	update customer set name=#{name},tel=#{tel},point=#{point} where id=#{id}
+ </update>
+ <delete id="delete">
+ 	delete from customer where id=#{id}
+ </delete>
+</mapper>

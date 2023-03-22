@@ -1,0 +1,28 @@
+package kr.ac.kopo.starcafe.Controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import kr.ac.kopo.starcafe.Model.Customer;
+import kr.ac.kopo.starcafe.Pager.Pager;
+import kr.ac.kopo.starcafe.Service.CustomerService;
+
+@RestController
+@RequestMapping("/api/customer")
+public class CustomerRestController {
+
+	@Autowired
+	CustomerService service;
+	
+	@GetMapping
+	public List<Customer> list(Pager pager){
+		return service.list(pager);
+	}
+	
+	
+}

@@ -16,15 +16,12 @@ window.addEventListener("load",()=>{
 
 
     document.querySelector("#addModal .submit").addEventListener("click",e =>{
-        const name=document.querySelector("#addModal input[name='name']").value;
-        const price=document.querySelector("#addModal input[name='price']").value;
-        const category=document.querySelector("#addModal select[name='category']").value;
-        const status=document.querySelector("#addModal select[name='status']").value;
+       
 
-        const item={name, price, category, status};
+        const item=add_item();
         console.log(item);
 
-        fetch("/api/product",{
+        fetch(pager_url,{
             method: "POST",
             headers:{'content-type':'application/json'},
             body: JSON.stringify(item)
@@ -52,15 +49,9 @@ window.addEventListener("load",()=>{
 
     document.querySelector("#updateModal .submit").addEventListener("click",e =>{
         const modal=document.querySelector("#updateModal");
-        const id=modal.querySelector("input[name='id']").value;
-        const name=modal.querySelector("input[name='name']").value;
-        const price=modal.querySelector("input[name='price']").value;
-        const category=modal.querySelector("select[name='category']").value;
-        const status=modal.querySelector("select[name='status']").value;
+        const item=update_item_modal(modal);
 
-        const item={id,name,price,category,status};
-
-        fetch("/api/product",{
+        fetch(pager_url,{
             method:"PUT",
             headers:{'content-type':'application/json'},
             body: JSON.stringify(item)
@@ -72,12 +63,7 @@ window.addEventListener("load",()=>{
         }).then(result =>{
             console.log(result);
             const tr=document.querySelector(`#list tr[data-id='${result.id}']`);
-            tr.querySelector(".name").textContent=result.name;
-            tr.querySelector(".price").textContent=result.price+"원";
-            tr.querySelector(".category").dataset.value=result.category;
-            tr.querySelector(".category").textContent=result.category_;
-            tr.querySelector(".status").dataset.value=result.status;
-            tr.querySelector(".status").textContent=result.status_;
+            update_item_result(tr,result);
 
         });
 
@@ -112,7 +98,7 @@ window.addEventListener("load",()=>{
 });
 
 function getPage(page,query){
-    let url=`/api/product?page=${page}`;
+    let url=`${pager_url}?page=${page}`;
     if(query)
        url += "&"+new URLSearchParams(query).toString();
 
@@ -187,33 +173,7 @@ function makeItem(element){
             tr.classList.add("item");
             tr.dataset.id=element.id;
 
-            const id=document.createElement("td");
-            id.textContent=element.id;
-            id.classList.add("id");
-            tr.append(id);
-
-            const name=document.createElement("td");
-            name.textContent=element.name;
-            name.classList.add("name");
-            tr.append(name);
-            
-
-            const price=document.createElement("td");
-            price.textContent=element.price+"원";
-            price.classList.add("price");
-            tr.append(price);
-
-            const category=document.createElement("td");
-            category.textContent=element.category_;
-            category.dataset.value=element.category;
-            category.classList.add("category");
-            tr.append(category);
-
-            const status=document.createElement("td");
-            status.textContent=element.status_;
-            status.dataset.value=element.status;
-            status.classList.add("status");
-            tr.append(status);
+            makeField(tr, element);
 
             const manage=document.createElement("td");
             
@@ -223,7 +183,7 @@ function makeItem(element){
             delete_btn.addEventListener("click", e =>{
                 const id=e.target.parentNode.parentNode.dataset.id;
                 console.log(id);
-                fetch(`/api/product/${id}`,{
+                fetch(`${pager_url}/${id}`,{
                     method:"DELETE"
                 }).then(resp =>{
                     if(resp.status ==200){
@@ -239,16 +199,9 @@ function makeItem(element){
             update_btn.text="변경";
             update_btn.classList.add("btn","btn-warning","update");
             update_btn.addEventListener("click", e =>{
-                const id=e.target.closest('tr');
+                const tr=e.target.closest('tr');
                 
-                
-                document.querySelector("#updateModal input[name= 'id']").value=tr.querySelector('.id').textContent;
-                document.querySelector("#updateModal input[name= 'name']").value=tr.querySelector('.name').textContent;
-                document.querySelector("#updateModal input[name= 'price']").value=parseInt( tr.querySelector('.price').textContent);
-                const category=tr.querySelector('.category').dataset.value;
-                document.querySelector(`#updateModal select[name='category'] option[value='${category}']`).selected=true;
-                const status=tr.querySelector('.status').dataset.value;
-                document.querySelector(`#updateModal select[name='status'] option[value= '${status}']`).selected=true;
+                update_item(tr);
 
                 const modal =new bootstrap.Modal(document.getElementById("updateModal"));
                 modal.toggle();
