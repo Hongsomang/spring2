@@ -13,42 +13,38 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript"> 
 const pager_url="/api/product";
-function update_item_result(tr,result) {
-	  tr.querySelector(".name").textContent=result.name;
-      tr.querySelector(".price").textContent=result.price+"원";
-      tr.querySelector(".category").dataset.value=result.category;
-      tr.querySelector(".category").textContent=result.category_;
-      tr.querySelector(".status").dataset.value=result.status;
-      tr.querySelector(".status").textContent=result.status_;
-}
-function update_item_modal(modal) {
-    const id=modal.querySelector("input[name='id']").value;
-    const name=modal.querySelector("input[name='name']").value;
-    const price=modal.querySelector("input[name='price']").value;
-    const category=modal.querySelector("select[name='category']").value;
-    const status=modal.querySelector("select[name='status']").value;
+const pager_item=[
+	{name:"id"},
+	{name:"name"},
+	{name:"price", suffix:" 원",},
+	{name:"category", select :true},
+	{name: "status", select :true}
+];
 
-    return {id,name,price,category,status};
-}
-function update_item(tr){
-	  document.querySelector("#updateModal input[name= 'id']").value=tr.querySelector('.id').textContent;
-      document.querySelector("#updateModal input[name= 'name']").value=tr.querySelector('.name').textContent;
-      document.querySelector("#updateModal input[name= 'price']").value=parseInt( tr.querySelector('.price').textContent);
-      const category=tr.querySelector('.category').dataset.value;
-      document.querySelector(`#updateModal select[name='category'] option[value='${category}']`).selected=true;
-      const status=tr.querySelector('.status').dataset.value;
-      document.querySelector(`#updateModal select[name='status'] option[value= '${status}']`).selected=true;
-}
-function add_item() {
-	 const name=document.querySelector("#addModal input[name='name']").value;
-     const price=document.querySelector("#addModal input[name='price']").value;
-     const category=document.querySelector("#addModal select[name='category']").value;
-     const status=document.querySelector("#addModal select[name='status']").value;
-     
-     return {name, price,category,status}
-}
+
+
+
 function makeField(tr,element) {
-	const id=document.createElement("td");
+	
+	pager_item.forEach(item =>{
+	/*	const ${item.name}=document.createElement("td");
+		if(item.select){
+			 item.select.textContent=element[`${item.name}_`];
+			    category.dataset.value=element[item.name];
+		}else{
+			item.name.textContent=element[item.name];
+			
+			
+			if(item.suffix){
+						
+			}
+		}
+		item.name.classList.add(`${item.name}`);
+		tr.append(`${item.name}`);
+	});*/
+	
+	
+	/*const id=document.createElement("td");
     id.textContent=element.id;
     id.classList.add("id");
     tr.append(id);
@@ -74,7 +70,7 @@ function makeField(tr,element) {
     status.textContent=element.status_;
     status.dataset.value=element.status;
     status.classList.add("status");
-    tr.append(status);
+    tr.append(status);*/
 }
 </script>
 <script type="text/javascript" src="/resources/js/pager.js"></script>
@@ -196,15 +192,15 @@ function makeField(tr,element) {
        <div>
 			<div class="mb-3" >
 				<label>제품명</label>
-				<input class="form-control"  type="text" name="name">
+				<input class="form-control pager-item"  type="text" name="name">
 			</div>
 			<div class="mb-3">
 				<label>가격:</label>
-				<input class="form-control" type="number" name="price">
+				<input class="form-control pager-item" type="number" name="price">
 			</div>
 			<div class="mb-3">
 				<label>구분</label>
-				<select class="form-control" name="category">
+				<select class="form-control pager-item" name="category">
 					<option value="1">음료</option>
 					<option value="2">푸드</option>
 					<option value="3">상품</option>
@@ -214,7 +210,7 @@ function makeField(tr,element) {
 			</div>
 			<div class="mb-3">
 				<label>판매여부</label>
-				<select class="form-control" name="status">
+				<select class="form-control pager-item" name="status">
 					<option value="0">판매중지</option>
 					<option value="1">판매중</option>
 				</select>
@@ -239,19 +235,19 @@ function makeField(tr,element) {
        <div>
        		<div class="mb-3" >
 				<label>제품 번호</label>
-				<input class="form-control"  type="number" name="id" readonly>
+				<input class="form-control pager-item "  type="number" name="id" readonly>
 			</div>
 			<div class="mb-3" >
 				<label>제품명</label>
-				<input class="form-control"  type="text" name="name">
+				<input class="form-control pager-item"  type="text" name="name">
 			</div>
 			<div class="mb-3">
 				<label>가격:</label>
-				<input class="form-control" type="number" name="price">
+				<input class="form-control pager-item" type="number" name="price">
 			</div>
 			<div class="mb-3">
 				<label>구분</label>
-				<select class="form-control" name="category">
+				<select class="form-control pager-item" name="category">
 					<option value="1">음료</option>
 					<option value="2">푸드</option>
 					<option value="3">상품</option>
@@ -261,7 +257,7 @@ function makeField(tr,element) {
 			</div>
 			<div class="mb-3">
 				<label>판매여부</label>
-				<select class="form-control" name="status">
+				<select class="form-control .pager-item" name="status">
 					<option value="0">판매중지</option>
 					<option value="1">판매중</option>
 				</select>

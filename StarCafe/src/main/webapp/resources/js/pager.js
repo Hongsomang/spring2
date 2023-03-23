@@ -18,7 +18,11 @@ window.addEventListener("load",()=>{
     document.querySelector("#addModal .submit").addEventListener("click",e =>{
        
 
-        const item=add_item();
+        const item={};
+        document.querySelectorAll("#addModal .pager-item").forEach(element =>{
+           item[element.name]=element.value; 
+        });
+       
         console.log(item);
 
         fetch(pager_url,{
@@ -49,7 +53,10 @@ window.addEventListener("load",()=>{
 
     document.querySelector("#updateModal .submit").addEventListener("click",e =>{
         const modal=document.querySelector("#updateModal");
-        const item=update_item_modal(modal);
+        
+        const item ={};
+        document.querySelectorAll("#updateModal .pager-item").forEach(element =>item[element.name]=element.value);
+
 
         fetch(pager_url,{
             method:"PUT",
@@ -63,7 +70,18 @@ window.addEventListener("load",()=>{
         }).then(result =>{
             console.log(result);
             const tr=document.querySelector(`#list tr[data-id='${result.id}']`);
-            update_item_result(tr,result);
+            pager_item.forEach(item =>{
+                if(item.select ){
+                    tr.querySelector(`.${item.name}`).dataset.value=result[item.name];
+                    tr.querySelector(`.${item.name}`).textContent=result[`${item.name}_`];
+                }else{
+                    tr.querySelector(`.${item.name}`).textContent = result[item.name];	  
+                    if(item.suffix){
+                        tr.querySelector(`.${item.name}`).textContent += item.suffix;
+                    }
+                }
+                
+            });
 
         });
 
@@ -201,7 +219,22 @@ function makeItem(element){
             update_btn.addEventListener("click", e =>{
                 const tr=e.target.closest('tr');
                 
-                update_item(tr);
+                document.querySelectorAll("#updateModal .pager-item").forEach(element =>{
+                    if(element.localName == "input"){
+                        if(element.type =="number"){
+                             element.value=parseInt(tr.querySelector(`.${element.name}`).textContent);
+                        }
+                        else{
+                            element.value=tr.querySelector(`.${element.name}`).textContent;	
+                        }
+                            
+                     }
+                        
+                    else if(element.localName == "select"){
+                        const value =tr.querySelector(`.${element.name}`).dataset.value
+                        document.querySelector(`#updateModal option[value='${value}']`).selected=true;
+                    }
+                 });
 
                 const modal =new bootstrap.Modal(document.getElementById("updateModal"));
                 modal.toggle();

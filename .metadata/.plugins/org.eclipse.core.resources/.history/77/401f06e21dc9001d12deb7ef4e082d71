@@ -1,0 +1,5 @@
+pager.js 사용법
+1) html 파일
+-등록 버튼에 add 아이디 부여
+-검색버튼에 search 아이디 부여
+-등록 모달에 input, search 태그에 pager-item 클래스 부여

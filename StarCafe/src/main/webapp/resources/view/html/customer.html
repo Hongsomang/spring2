@@ -13,35 +13,19 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript"> 
 const pager_url="/api/customer";
-function update_item_result(tr,result) {
-	 tr.querySelector(".name").textContent=result.name;
-    tr.querySelector(".tel").textContent=result.tel;
-    tr.querySelector(".point").textContent=result.point+"원";
+const pager_item=[
+	{name:"id"},
+	{name:"name"},
+	{name:"tel"},
+	{name:"point"}
+];
 
-}
-function update_item_modal(modal) {
-    const id=modal.querySelector("input[name='id']").value;
-    const name=modal.querySelector("input[name='name']").value;
-    const tel=modal.querySelector("input[name='tel']").value;
-    const point=modal.querySelector("input[name='point']").value;
- 
-    return {id,name,tel,point};
-}
-function update_item(tr){
-	 document.querySelector("#updateModal input[name= 'id']").value=tr.querySelector('.id').textContent;
-    document.querySelector("#updateModal input[name= 'name']").value=tr.querySelector('.name').textContent;
-    document.querySelector("#updateModal input[name= 'tel']").value= tr.querySelector('.tel').textContent;
-    document.querySelector("#updateModal input[name= 'point']").value=parseInt( tr.querySelector('.point').textContent);
- 
-}
-function add_item() {
-	 const name=document.querySelector("#addModal input[name='name']").value;
-    const tel=document.querySelector("#addModal input[name='tel']").value;
-    
-    return {name, tel}
-}
 function makeField(tr,element) {
-	const id=document.createElement("td");
+	
+	
+	
+	
+	/*const id=document.createElement("td");
     id.textContent=element.id;
     id.classList.add("id");
     tr.append(id);
@@ -57,9 +41,9 @@ function makeField(tr,element) {
     tr.append(tel);
    
     const point=document.createElement("td");
-    point.textContent=element.point+"원";
+    point.textContent=element.point;
     point.classList.add("point");
-    tr.append(point);
+    tr.append(point);*/
  
 }
 </script>
@@ -100,7 +84,7 @@ function makeField(tr,element) {
 					<tr>
 						<th scope="col">고객명번호</th>
 						<th scope="col">고객명</th>
-						<th scope="col">전호번호</th>
+						<th scope="col">전화번호</th>
 						<th scope="col">포인트</th>
 						<th scope="col">관리</th>
 					</tr>
@@ -155,11 +139,11 @@ function makeField(tr,element) {
        <div>
 			<div class="mb-3" >
 				<label>고객명</label>
-				<input class="form-control"  type="text" name="name">
+				<input class="form-control pager-item"  type="text" name="name">
 			</div>
 			<div class="mb-3">
 				<label>전화번호:</label>
-				<input class="form-control" type="text" name="tel">
+				<input class="form-control pager-item" type="text" name="tel">
 			</div>
 			
 	</div>
@@ -182,19 +166,19 @@ function makeField(tr,element) {
        <div>
        		<div class="mb-3" >
 				<label>제품 번호</label>
-				<input class="form-control"  type="number" name="id" readonly>
+				<input class="form-control pager-item "  type="number" name="id" readonly>
 			</div>
 			<div class="mb-3" >
 				<label>고객명</label>
-				<input class="form-control"  type="text" name="name">
+				<input class="form-control pager-item"  type="text" name="name">
 			</div>
 			<div class="mb-3">
-				<label>전호번호:</label>
-				<input class="form-control" type="text" name="tel">
+				<label>전화번호:</label>
+				<input class="form-control pager-item" type="text" name="tel">
 			</div>
 			<div class="mb-3">
 				<label>포인트:</label>
-				<input class="form-control" type="number" name="point">
+				<input class="form-control pager-item" type="number" name="point">
 				
 			</div>
 			
