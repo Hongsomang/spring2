@@ -21,20 +21,59 @@ const pager_item=[
 	{name: "status", select :true}
 ];
 
-/*new Pager("/api/product",{
-	item: [
-		{name:"id"},
-		{name:"name"},
-		{name:"price", suffix:" 원",},
-		{name:"category", select :true},
-		{name: "status", select :true}
-	]
-});*/
 
 
 
+function makeField(tr,element) {
+	
+	pager_item.forEach(item =>{
+	/*	const ${item.name}=document.createElement("td");
+		if(item.select){
+			 item.select.textContent=element[`${item.name}_`];
+			    category.dataset.value=element[item.name];
+		}else{
+			item.name.textContent=element[item.name];
+			
+			
+			if(item.suffix){
+						
+			}
+		}
+		item.name.classList.add(`${item.name}`);
+		tr.append(`${item.name}`);
+	});*/
+	
+	
+	/*const id=document.createElement("td");
+    id.textContent=element.id;
+    id.classList.add("id");
+    tr.append(id);
+
+    const name=document.createElement("td");
+    name.textContent=element.name;
+    name.classList.add("name");
+    tr.append(name);
+    
+
+    const price=document.createElement("td");
+    price.textContent=element.price+"원";
+    price.classList.add("price");
+    tr.append(price);
+
+    const category=document.createElement("td");
+    category.textContent=element.category_;
+    category.dataset.value=element.category;
+    category.classList.add("category");
+    tr.append(category);
+
+    const status=document.createElement("td");
+    status.textContent=element.status_;
+    status.dataset.value=element.status;
+    status.classList.add("status");
+    tr.append(status);*/
+}
 </script>
-<script type="text/javascript" src="/resources/jquery/pager.js"></script>
+<script type="text/javascript" src="/resources/js/pager.js"></script>
 <script type="text/javascript" src="/resources/js/search.js"></script>
 <link href="/resources/css/pager.css" rel="stylesheet" type="text/css">
 <!-- ${pageContext.request.contextPath} -->

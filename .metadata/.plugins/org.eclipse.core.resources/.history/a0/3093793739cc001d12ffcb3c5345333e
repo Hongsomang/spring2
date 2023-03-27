@@ -21,20 +21,12 @@ const pager_item=[
 	{name: "status", select :true}
 ];
 
-/*new Pager("/api/product",{
-	item: [
-		{name:"id"},
-		{name:"name"},
-		{name:"price", suffix:" 원",},
-		{name:"category", select :true},
-		{name: "status", select :true}
-	]
-});*/
+
 
 
 
 </script>
-<script type="text/javascript" src="/resources/jquery/pager.js"></script>
+<script type="text/javascript" src="/resources/js/pager.js"></script>
 <script type="text/javascript" src="/resources/js/search.js"></script>
 <link href="/resources/css/pager.css" rel="stylesheet" type="text/css">
 <!-- ${pageContext.request.contextPath} -->

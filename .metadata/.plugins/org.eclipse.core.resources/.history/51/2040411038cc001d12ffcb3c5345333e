@@ -20,9 +20,33 @@ const pager_item=[
 	{name:"point"}
 ];
 
+function makeField(tr,element) {
+	
+	
+	
+	/*const id=document.createElement("td");
+    id.textContent=element.id;
+    id.classList.add("id");
+    tr.append(id);
 
+    const name=document.createElement("td");
+    name.textContent=element.name;
+    name.classList.add("name");
+    tr.append(name);
+    
+    const tel=document.createElement("td");
+    tel.textContent=element.tel;
+    tel.classList.add("tel");
+    tr.append(tel);
+   
+    const point=document.createElement("td");
+    point.textContent=element.point;
+    point.classList.add("point");
+    tr.append(point);*/
+ 
+}
 </script>
-<script type="text/javascript" src="/resources/jquery/pager.js"></script>
+<script type="text/javascript" src="/resources/js/pager.js"></script>
 <script type="text/javascript" src="/resources/js/search.js"></script>
 <link href="/resources/css/pager.css" rel="stylesheet" type="text/css">
   

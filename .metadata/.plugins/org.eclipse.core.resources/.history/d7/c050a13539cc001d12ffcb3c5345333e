@@ -22,7 +22,7 @@ const pager_item=[
 
 
 </script>
-<script type="text/javascript" src="/resources/jquery/pager.js"></script>
+<script type="text/javascript" src="/resources/js/pager.js"></script>
 <script type="text/javascript" src="/resources/js/search.js"></script>
 <link href="/resources/css/pager.css" rel="stylesheet" type="text/css">
   

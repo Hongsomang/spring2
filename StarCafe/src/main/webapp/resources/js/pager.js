@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 let pager;
 
 window.addEventListener("load",()=>{
@@ -191,7 +189,25 @@ function makeItem(element){
             tr.classList.add("item");
             tr.dataset.id=element.id;
 
-            makeField(tr, element);
+            pager_item.forEach(item =>{
+                const {name, suffix, select}=item;
+                
+                const td=document.createElement("td");
+                td.textContent =element[name];
+                
+                if(select){
+                    td.textContent= element[`${name}_`];
+                    td.dataset.value =element[name];
+                }
+                else{
+                    td.textContent=element[name];
+                }
+                if(suffix){
+                    td.textContent +=suffix;
+                }
+                td.classList.add(name);
+                tr.append(td);
+            });
 
             const manage=document.createElement("td");
             
